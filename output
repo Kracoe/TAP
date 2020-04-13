@@ -1,0 +1,124 @@
+(base) tcabaranger@penguin:~/TAP/a_star$ make -B a_star
+gcc -O3 -Wall -g -Wno-unused-function -Wno-deprecated-declarations -o a_star a_star.c tools.c heap.c  -lm -lglut -lGLU -lGL -lSDL2
+a_star.c: In function ‘distance’:
+a_star.c:42:10: error: too few arguments to function ‘abs’
+   return abs()
+          ^~~
+In file included from tools.h:6,
+                 from a_star.c:1:
+/usr/include/stdlib.h:837:12: note: declared here
+ extern int abs (int __x) __THROW __attribute__ ((__const__)) __wur;
+            ^~~
+a_star.c:42:15: error: expected ‘;’ before ‘}’ token
+   return abs()
+               ^
+               ;
+ }
+ ~              
+a_star.c: In function ‘create_node’:
+a_star.c:51:13: warning: assignment to ‘struct node *’ from incompatible pointer type ‘struct node **’ [-Wincompatible-pointer-types]
+   a->parent = parent;
+             ^
+a_star.c: In function ‘A_star’:
+a_star.c:142:13: error: invalid type argument of ‘->’ (have ‘grid’ {aka ‘struct <anonymous>’})
+   int x0 = G->start->x;
+             ^~
+a_star.c:143:13: error: invalid type argument of ‘->’ (have ‘grid’ {aka ‘struct <anonymous>’})
+   int y0 = G->start->y;
+             ^~
+a_star.c:148:23: error: invalid type argument of ‘->’ (have ‘grid’ {aka ‘struct <anonymous>’})
+   double s_score = h(G->start,G->end,G);
+                       ^~
+a_star.c:148:32: error: invalid type argument of ‘->’ (have ‘grid’ {aka ‘struct <anonymous>’})
+   double s_score = h(G->start,G->end,G);
+                                ^~
+a_star.c:148:38: error: incompatible type for argument 3 of ‘h’
+   double s_score = h(G->start,G->end,G);
+                                      ^
+a_star.c:148:38: note: expected ‘grid *’ {aka ‘struct <anonymous> *’} but argument is of type ‘grid’ {aka ‘struct <anonymous>’}
+a_star.c:149:25: error: invalid type argument of ‘->’ (have ‘grid’ {aka ‘struct <anonymous>’})
+   node s = create_node(G->start,0,s_score,NULL);
+                         ^~
+a_star.c:153:18: error: invalid type argument of ‘->’ (have ‘grid’ {aka ‘struct <anonymous>’})
+   int nmax = 8*(G->X)*(G->Y) ; //8*nb de cases
+                  ^~
+a_star.c:153:25: error: invalid type argument of ‘->’ (have ‘grid’ {aka ‘struct <anonymous>’})
+   int nmax = 8*(G->X)*(G->Y) ; //8*nb de cases
+                         ^~
+a_star.c:154:29: warning: passing argument 2 of ‘heap_create’ from incompatible pointer type [-Wincompatible-pointer-types]
+   heap Q = heap_create(nmax,h);
+                             ^
+In file included from a_star.c:2:
+heap.h:25:31: note: expected ‘int (*)(const void *, const void *)’ but argument is of type ‘heuristic’ {aka ‘double (*)(struct <anonymous>,  struct <anonymous>,  struct <anonymous> *)’}
+ heap heap_create(int k, int (*f)(const void *, const void *));
+                         ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+a_star.c:160:18: error: ‘t’ undeclared (first use in this function)
+     if(u->pos == t->pos){ //On renvoie le chemin
+                  ^
+a_star.c:160:18: note: each undeclared identifier is reported only once for each function it appears in
+a_star.c:161:20: error: invalid type argument of ‘->’ (have ‘position’ {aka ‘struct <anonymous>’})
+       G.mark[u->pos->x][u->pos->y] = M_PATH;
+                    ^~
+a_star.c:161:31: error: invalid type argument of ‘->’ (have ‘position’ {aka ‘struct <anonymous>’})
+       G.mark[u->pos->x][u->pos->y] = M_PATH;
+                               ^~
+a_star.c:163:20: error: invalid operands to binary != (have ‘position’ {aka ‘struct <anonymous>’} and ‘position’ {aka ‘struct <anonymous>’})
+       while(a->pos != s->pos){
+             ~~~~~~ ^~ ~~~~~~
+a_star.c:164:22: error: invalid type argument of ‘->’ (have ‘position’ {aka ‘struct <anonymous>’})
+         G.mark[a->pos->x][a->pos->y] = M_PATH;
+                      ^~
+a_star.c:164:33: error: invalid type argument of ‘->’ (have ‘position’ {aka ‘struct <anonymous>’})
+         G.mark[a->pos->x][a->pos->y] = M_PATH;
+                                 ^~
+a_star.c:167:20: error: invalid type argument of ‘->’ (have ‘position’ {aka ‘struct <anonymous>’})
+       G.mark[s->pos->x][s->pos->y] = M_PATH ;
+                    ^~
+a_star.c:167:31: error: invalid type argument of ‘->’ (have ‘position’ {aka ‘struct <anonymous>’})
+       G.mark[s->pos->x][s->pos->y] = M_PATH ;
+                               ^~
+a_star.c:171:18: error: invalid type argument of ‘->’ (have ‘position’ {aka ‘struct <anonymous>’})
+     G.mark[u->pos->x][u->pos->y] = M_USED;
+                  ^~
+a_star.c:171:29: error: invalid type argument of ‘->’ (have ‘position’ {aka ‘struct <anonymous>’})
+     G.mark[u->pos->x][u->pos->y] = M_USED;
+                             ^~
+a_star.c:172:5: error: too few arguments to function ‘drawGrid’
+     drawGrid();
+     ^~~~~~~~
+In file included from a_star.c:1:
+tools.h:117:6: note: declared here
+ void drawGrid(grid); // affiche une grille
+      ^~~~~~~~
+a_star.c:176:18: error: expected ‘)’ before ‘and’
+         if((i!=0)and(j!=0)){  // Ou si on est sur un mur
+           ~      ^~~
+                  )
+a_star.c:181:13: error: ‘u_pos’ undeclared (first use in this function); did you mean ‘v_pos’?
+             u_pos->x = i;
+             ^~~~~
+             v_pos
+a_star.c:183:43: error: invalid type argument of ‘->’ (have ‘grid’ {aka ‘struct <anonymous>’})
+             double v_score = c + h(v_pos,G->end,G);
+                                           ^~
+a_star.c:183:49: error: incompatible type for argument 3 of ‘h’
+             double v_score = c + h(v_pos,G->end,G);
+                                                 ^
+a_star.c:183:49: note: expected ‘grid *’ {aka ‘struct <anonymous> *’} but argument is of type ‘grid’ {aka ‘struct <anonymous>’}
+a_star.c:184:55: warning: passing argument 4 of ‘create_node’ from incompatible pointer type [-Wincompatible-pointer-types]
+             node v_node = create_node(v_pos,c,v_score,u);
+                                                       ^
+a_star.c:45:70: note: expected ‘struct node **’ but argument is of type ‘node’ {aka ‘struct node *’}
+ node create_node(position pos_node, double cost, double score, node *parent){
+                                                                ~~~~~~^~~~~~
+a_star.c:191:9: warning: ‘return’ with a value, in function returning void
+   return("Le chemin n'a pas été trouvé");
+         ^
+a_star.c:118:6: note: declared here
+ void A_star(grid G, heuristic h){
+      ^~~~~~
+a_star.c: In function ‘distance’:
+a_star.c:43:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+make: *** [Makefile:21: a_star] Error 1
